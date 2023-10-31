@@ -1,38 +1,48 @@
 package com.example.springlab2.Files;
 
 import java.util.ArrayList;
+
 import java.util.Collection;
 import java.util.List;
-
-public class Book {
-    String title;
-    List<Author> autori = new ArrayList<Author>();
-    List<Chapter> chapters = new ArrayList<Chapter>();
+public class Book extends Section{
+    public String title;
+    public List<Author> au = new ArrayList<Author>();
+    public TableOfContents tb;
 
     public Book(String title) {
+        super(title);
         this.title = title;
     }
 
-    @Override
-    public String toString() {
-        return "Book{" +
-                "title='" + title + '\'' +
-                ", autori=" + autori +
-                ", chapters=" + chapters +
-                '}';
+    public void print() {
+        System.out.println("Book: " + title);
+        System.out.println();
+        System.out.println("Authors:");
+        for (Author a : au) {
+            a.print();
+        }
+
+        System.out.println();
+        for (Element et : el) {
+            et.print();
+        }
     }
 
-
-    public void addAuthor(Author author) {
-        autori.add(author);
+    public void addAuthor(Author nume) {
+        au.add(nume);
     }
 
-    public int createChapter(String s) {
-        chapters.add(new Chapter(s));
-        return 0;
+    public void addContent(Element a) {
+        el.add(a);
     }
-
-    public Chapter getChapter(int indexChapterOne) {
-        return this.chapters.get(indexChapterOne);
-    }
+//    public int createChapter(String nume)
+//    { Chapter a = new Chapter();
+//        a.name=nume;
+//        ch.add(a);
+//        return ch.indexOf(a);
+//    }
+//    public Chapter getChapter(int nr)
+//    {
+//        return ch.get(nr);
+//    }
 }

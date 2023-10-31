@@ -8,7 +8,7 @@ public class SubChapter {
     String text;
     Collection<Image> Images= new ArrayList<Image>();
     Collection<Table> Tables= new ArrayList<Table>();
-    Collection<Paraghrap> Paragraphs= new ArrayList<Paraghrap>();
+    Collection<Pharagraph> Paragraphs= new ArrayList<Pharagraph>();
 
     @Override
     public String toString() {
@@ -25,7 +25,7 @@ public class SubChapter {
     }
 
     public void createNewParagraph(String s) {
-        Paragraphs.add(new Paraghrap(s));
+        Paragraphs.add(new Pharagraph(s));
     }
 
     public void createNewImage(String s) {

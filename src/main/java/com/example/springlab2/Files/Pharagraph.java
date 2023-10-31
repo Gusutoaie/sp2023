@@ -1,20 +1,15 @@
 package com.example.springlab2.Files;
 
-import lombok.Data;
+public class Pharagraph implements  Element {
+    public String text;
 
-public class Table implements Element {
-    public String title;
-
-    public Table(String title) {
-        this.title = title;
-    }
-
-    public Table() {
-        this.title = "";
+    public Pharagraph(){}
+    public Pharagraph(String text) {
+        this.text = text;
     }
 
     public void print() {
-        System.out.println("Table with name : " + title);
+        System.out.println("Paragraph: " + text);
     }
 
     @Override
@@ -32,4 +27,3 @@ public class Table implements Element {
 
     }
 }
-
