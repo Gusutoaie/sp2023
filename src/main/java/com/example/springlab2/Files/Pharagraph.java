@@ -2,7 +2,7 @@ package com.example.springlab2.Files;
 
 import lombok.Getter;
 
-public class Pharagraph implements  Element {
+public class Pharagraph implements  Element, Visitee{
     @Getter
     public String text;
     private AlignStrategy alignStrategy;
@@ -46,4 +46,8 @@ public class Pharagraph implements  Element {
         }
     }
 
+    @Override
+    public void accept(Visitor v) {
+        v.visitParagraph(this);
+    }
 }

@@ -1,9 +1,11 @@
 package com.example.springlab2.Files;
 
+import lombok.Data;
+
 import java.util.ArrayList;
 import java.util.List;
-
-public class Section implements Element {
+@Data
+public class Section implements Element,Visitee {
     public String title;
 
     public List<Element> el = new ArrayList<>();
@@ -12,13 +14,7 @@ public class Section implements Element {
         this.title = title;
     }
 
-    @Override
-    public void print() {
-        System.out.println(title);
-        for (Element e : el) {
-            e.print();
-        }
-    }
+
 
     @Override
     public void add(Element a) {
@@ -33,5 +29,10 @@ public class Section implements Element {
     @Override
     public void remove(Element a) {
 
+    }
+
+    @Override
+    public void accept(Visitor v) {
+        v.visitSection(this);
     }
 }

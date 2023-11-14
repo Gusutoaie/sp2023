@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import java.util.Collection;
 import java.util.List;
-public class Book extends Section{
+public class Book extends Section implements Visitee{
     public String title;
     public List<Author> au = new ArrayList<Author>();
     public TableOfContents tb;
@@ -14,19 +14,7 @@ public class Book extends Section{
         this.title = title;
     }
 
-    public void print() {
-        System.out.println("Book: " + title);
-        System.out.println();
-        System.out.println("Authors:");
-        for (Author a : au) {
-            a.print();
-        }
 
-        System.out.println();
-        for (Element et : el) {
-            et.print();
-        }
-    }
 
     public void addAuthor(Author nume) {
         au.add(nume);
@@ -34,6 +22,10 @@ public class Book extends Section{
 
     public void addContent(Element a) {
         el.add(a);
+    }
+
+    public List<Author> getAuthors() {
+        return au;
     }
 //    public int createChapter(String nume)
 //    { Chapter a = new Chapter();

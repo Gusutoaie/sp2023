@@ -2,7 +2,7 @@ package com.example.springlab2.Files;
 
 import lombok.Data;
 
-public class Table implements Element {
+public class Table implements Element,Visitee {
     public String title;
 
     public Table(String title) {
@@ -30,6 +30,11 @@ public class Table implements Element {
     @Override
     public void remove(Element a) {
 
+    }
+
+    @Override
+    public void accept(Visitor v) {
+        v.visitTable(this);
     }
 }
 

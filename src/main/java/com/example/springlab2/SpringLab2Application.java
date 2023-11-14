@@ -42,7 +42,7 @@ public class SpringLab2Application {
 // One can also request an instance from DI context by name
         c = (ClientComponent)context.getBean("clientComponent");
         c.operation();
-
+        new RenderContentVisitor().visitBook(c);
 
 
 
