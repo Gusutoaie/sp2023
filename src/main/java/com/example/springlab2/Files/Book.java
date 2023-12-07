@@ -1,13 +1,17 @@
 package com.example.springlab2.Files;
 
+import lombok.Data;
+
 import java.util.ArrayList;
 
 import java.util.Collection;
 import java.util.List;
-public class Book extends Section implements Visitee{
+@Data
+public class Book extends Section implements Visitee {
     public String title;
     public List<Author> au = new ArrayList<Author>();
     public TableOfContents tb;
+    public int id;
 
     public Book(String title) {
         super(title);
@@ -27,14 +31,4 @@ public class Book extends Section implements Visitee{
     public List<Author> getAuthors() {
         return au;
     }
-//    public int createChapter(String nume)
-//    { Chapter a = new Chapter();
-//        a.name=nume;
-//        ch.add(a);
-//        return ch.indexOf(a);
-//    }
-//    public Chapter getChapter(int nr)
-//    {
-//        return ch.get(nr);
-//    }
 }

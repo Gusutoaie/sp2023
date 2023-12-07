@@ -9,4 +9,5 @@ public interface Element {
 
     void remove(Element a);
 
+    void accept(TableOfContentUpdate tableOfContentUpdate);
 }

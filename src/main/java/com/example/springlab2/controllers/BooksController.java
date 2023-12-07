@@ -3,13 +3,15 @@ package com.example.springlab2.controllers;
 import com.example.springlab2.Files.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
-@RequestMapping("/books")
 public class BooksController {
+    private List<Book> books = new ArrayList<>();
+
     @GetMapping("/statistics")
     public ResponseEntity<?> printStatistics() {
         Section cap1 = new Section("Capitolul 1");
@@ -30,4 +32,32 @@ public class BooksController {
         stats.printStatistics();
         return new ResponseEntity<>("", HttpStatus.OK);
     }
+
+    @GetMapping("/books")
+    public List<Book> getAllBooks() {
+        return books;
+    }
+
+    @GetMapping("books/{id}")
+    public Book getBookById(@PathVariable Long id) {
+
+
+        return
+
+    @PostMapping("/books")
+    public Book createBook(@RequestBody Book book) {
+        return bookRepository.save(book);
+    }
+
+    @PutMapping("/books/{id}")
+    public Book updateBook(@PathVariable Long id, @RequestBody Book updatedBook) {
+        updatedBook.setId(id);
+        return books.save(updatedBook);
+    }
+
+    @DeleteMapping("/book/{id}")
+    public void deleteBook(@PathVariable Long id) {
+        books.deleteById(id);
+    }
+
 }

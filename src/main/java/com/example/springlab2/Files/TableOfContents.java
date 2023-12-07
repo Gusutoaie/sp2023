@@ -3,9 +3,7 @@ package com.example.springlab2.Files;
 import java.awt.*;
 
 public class TableOfContents implements Element{
-    @Override
-    public void print() {
-    }
+
 
     @Override
     public void add(Element a) {
@@ -21,6 +19,12 @@ public class TableOfContents implements Element{
     public void remove(Element a) {
 
     }
+
+    @Override
+    public void accept(TableOfContentUpdate tableOfContentUpdate) {
+
+    }
+
     public static void createTableOfContent() {
         Book b = new Book("The book");
         Section cap1 = new Section("Chapter 1");
@@ -42,6 +46,6 @@ public class TableOfContents implements Element{
         b.addContent(cap2);
         TableOfContentUpdate tocUpdate = new TableOfContentUpdate();
         b.accept(tocUpdate);
-        tocUpdate.getToC().accept(new RenderContentVisitor());
+        //tocUpdate.getToC().accept(new RenderContentVisitor());
     }
 }

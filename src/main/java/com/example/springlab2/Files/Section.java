@@ -32,7 +32,16 @@ public class Section implements Element,Visitee {
     }
 
     @Override
+    public void accept(TableOfContentUpdate tableOfContentUpdate) {
+
+    }
+
+    @Override
     public void accept(Visitor v) {
         v.visitSection(this);
+    }
+
+    public Element[] getContent() {
+        return new Element[0];
     }
 }
