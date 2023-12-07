@@ -1,33 +1,30 @@
 package com.example.springlab2.Files;
+import com.example.springlab2.service.Visitor;
+
 import java.awt.*;
+import java.util.Objects;
 
-public class ImageProxy implements Element{
-    public String url;
-    public Dimension dim;
-    Image realImage = null;
-    public ImageProxy(String url)
-    {
-        this.url=url;
+public class ImageProxy implements Element, Visitee {
+
+    private String imagename;
+    private Image realImage= null;
+
+    public ImageProxy(String imagename) {
+        this.imagename = imagename;
     }
-    private Image loadImage() {
 
-        if (realImage == null) {
-            realImage = new Image(url);
+    public Image loadRealImage() {
+        if (Objects.isNull(realImage)) {
+            realImage = new Image(this.imagename);
+            return realImage;
         }
         return realImage;
     }
 
-
-
-
     @Override
-    public void add(Element a) {
-
-    }
-
-    @Override
-    public Element get(int nr) {
-        return null;
+    public void print() {
+        loadRealImage();
+        realImage.print();
     }
 
     @Override
@@ -36,8 +33,20 @@ public class ImageProxy implements Element{
     }
 
     @Override
-    public void accept(TableOfContentUpdate tableOfContentUpdate) {
+    public void add(Element e) {
+        throw new UnsupportedOperationException();
+    }
 
+
+
+    @Override
+    public Element get(int i) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visitImageProxy(this);
     }
 
 

@@ -28,21 +28,24 @@ public class Section implements Element,Visitee {
     }
 
     @Override
+    public void print() {
+
+    }
+
+    @Override
     public void remove(Element a) {
 
     }
 
-    @Override
-    public void accept(TableOfContentUpdate tableOfContentUpdate) {
 
-    }
 
     @Override
-    public void accept(Visitor v) {
-        v.visitSection(this);
+    public void accept(Visitor visitor) {
+        visitor.visitSection(this);
+        for(Element c: el){
+            c.accept(visitor);
+    }
     }
 
-    public Element[] getContent() {
-        return new Element[0];
-    }
+
 }

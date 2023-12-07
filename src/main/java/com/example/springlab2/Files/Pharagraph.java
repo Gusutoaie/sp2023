@@ -1,9 +1,10 @@
 package com.example.springlab2.Files;
 
 import com.example.springlab2.service.Visitor;
+import lombok.Data;
 import lombok.Getter;
-
-public class Pharagraph implements  Element{
+@Data
+public class Pharagraph implements  Element,Visitee{
     @Getter
     public String text;
     private AlignStrategy alignStrategy;
@@ -32,23 +33,15 @@ public class Pharagraph implements  Element{
 
     }
 
-
-
-    public String render() {
-        if (alignStrategy != null) {
-            return alignStrategy.render(this);
-        }
-        return text;
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visitParagraph(this);
     }
 
 
-    public void setAlignStrategy(AlignStrategy alignStrategy) {
-        this.alignStrategy = alignStrategy;
-        // Update the text with the new alignment strategy
-        if (alignStrategy != null) {
-            text = alignStrategy.render(this);
-        }
-    }
+
+
+
 
 
 }

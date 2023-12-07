@@ -49,8 +49,4 @@ public class Image implements Element,Picture,Visitee {
         v.visitImage(this);
     }
 
-//    @Override
-//    public Dimension dim() {
-//        return null;
-//    }
 }

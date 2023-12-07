@@ -1,18 +1,14 @@
 package com.example.springlab2.Files;
 
+import java.sql.SQLOutput;
+
 public class AlignCenter implements AlignStrategy{
     @Override
-    public String render(Pharagraph context) {
-        int totalWidth = 80; // Total width of the aligned text (adjust as needed)
-        String text = context.getText();
-        int textWidth = text.length();
-
-        if (textWidth >= totalWidth) {
-            return text; // Text is longer than the total width, can't center-align.
-        }
-
-        int padding = (totalWidth - textWidth) / 2;
-        String alignedText = " ".repeat(padding) + text;
-        return alignedText;
+    public void render(String text) {
+        int width = 80;
+        int padSize = (width - text.length()) / 2;
+        String pad = String.format("%"+padSize+"s", "");
+        System.out.println(pad + text);
     }
+
 }

@@ -2,44 +2,57 @@ package com.example.springlab2.Files;
 
 import com.example.springlab2.service.Visitor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class TableOfContentUpdate implements Visitor {
-    private List<String> tocEntries;
+    private TableOfContent tableOfContent;
+    private int pageIndex;
 
     public TableOfContentUpdate() {
-        this.tocEntries = new ArrayList<>();
-    }
-
-    public List<String> getToC() {
-        return tocEntries;
-    }
-    @Override
-    public void visitParagraph(Pharagraph p) {
-
-    }
-
-    @Override
-    public void visitSection(Section s) {
-        tocEntries.add(s.getTitle());
-        for (Element element : s.getContent()) {
-            element.accept(this); // Continue visiting sub-elements
-        }
-    }
-
-    @Override
-    public void visitImage(Image image) {
-
-    }
-
-    @Override
-    public void visitTable(Table table) {
-
+        this.tableOfContent = new TableOfContent();
+        this.pageIndex = 0;
     }
 
     @Override
     public void visitBook(Book book) {
+        this.pageIndex += 1;
+    }
 
+    @Override
+    public void visitSection(Section section) {
+        String entry = section.getTitle() + ' ';
+        while (entry.length() <= 20) {
+            entry += '.';
+        }
+        entry += " " + this.pageIndex;
+
+        tableOfContent.addEntry(entry);
+    }
+
+    @Override
+    public void visitParagraph(Pharagraph paragraph) {
+        this.pageIndex += 1;
+    }
+
+    @Override
+    public void visitImageProxy(ImageProxy imageProxy) {
+        this.pageIndex += 1;
+    }
+
+    @Override
+    public void visitImage(Image image) {
+        this.pageIndex += 1;
+    }
+
+    @Override
+    public void visitTable(Table table) {
+        this.pageIndex += 1;
+    }
+
+    @Override
+    public void visitTableOfContent(TableOfContent tableOfContent) {
+
+    }
+
+    public TableOfContent getToC() {
+        return this.tableOfContent;
     }
 }

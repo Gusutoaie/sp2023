@@ -8,8 +8,7 @@ public interface Visitor {
     void visitImage(Image image);
     void visitTable(Table table);
     void visitBook(Book book);
-    void visitPharagraph(Pharagraph pharagraph);
-    void visitTableOfContent(TableOfContents tableOfContents);
+    void visitTableOfContent(TableOfContent tableOfContents);
     void visitImageProxy(ImageProxy imageProxy);
 
 
