@@ -1,5 +1,6 @@
 package com.example.springlab2.Files;
 
+import com.example.springlab2.service.Visitor;
 import lombok.Data;
 
 import java.util.ArrayList;

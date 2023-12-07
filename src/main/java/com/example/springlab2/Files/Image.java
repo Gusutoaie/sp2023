@@ -3,7 +3,7 @@ import java.awt.*;
 import java.util.concurrent.TimeUnit;
 
 
-import lombok.Data;
+import com.example.springlab2.service.Visitor;
 
 public class Image implements Element,Picture,Visitee {
     public String ImageName;

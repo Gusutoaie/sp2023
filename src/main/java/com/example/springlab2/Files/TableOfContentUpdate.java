@@ -1,5 +1,7 @@
 package com.example.springlab2.Files;
 
+import com.example.springlab2.service.Visitor;
+
 import java.util.ArrayList;
 import java.util.List;
 

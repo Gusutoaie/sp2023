@@ -1,6 +1,6 @@
 package com.example.springlab2.Files;
 
-import lombok.Data;
+import com.example.springlab2.service.Visitor;
 
 public class Table implements Element,Visitee {
     public String title;

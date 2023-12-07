@@ -1,5 +1,7 @@
 package com.example.springlab2.Files;
 
+import com.example.springlab2.service.Visitor;
+
 public interface Element {
 
 
@@ -8,6 +10,6 @@ public interface Element {
     Element get(int nr);
 
     void remove(Element a);
+    default void accept(Visitor visitor){};
 
-    void accept(TableOfContentUpdate tableOfContentUpdate);
 }

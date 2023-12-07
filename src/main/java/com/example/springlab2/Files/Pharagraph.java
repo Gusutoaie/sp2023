@@ -1,8 +1,9 @@
 package com.example.springlab2.Files;
 
+import com.example.springlab2.service.Visitor;
 import lombok.Getter;
 
-public class Pharagraph implements  Element, Visitee{
+public class Pharagraph implements  Element{
     @Getter
     public String text;
     private AlignStrategy alignStrategy;
@@ -30,6 +31,9 @@ public class Pharagraph implements  Element, Visitee{
     public void remove(Element a) {
 
     }
+
+
+
     public String render() {
         if (alignStrategy != null) {
             return alignStrategy.render(this);
@@ -46,8 +50,5 @@ public class Pharagraph implements  Element, Visitee{
         }
     }
 
-    @Override
-    public void accept(Visitor v) {
-        v.visitParagraph(this);
-    }
+
 }

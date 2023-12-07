@@ -1,6 +1,8 @@
 package com.example.springlab2.Files;
 
-public class BookStatistics implements Visitor{
+import com.example.springlab2.service.Visitor;
+
+public class BookStatistics implements Visitor {
     public void printStatistics() {
     }
 

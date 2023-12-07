@@ -1,12 +1,13 @@
 package com.example.springlab2.Files;
 
+import com.example.springlab2.service.Visitor;
 import lombok.Data;
 
 import java.util.ArrayList;
 
 import java.util.Collection;
 import java.util.List;
-@Data
+
 public class Book extends Section implements Visitee {
     public String title;
     public List<Author> au = new ArrayList<Author>();
@@ -31,4 +32,13 @@ public class Book extends Section implements Visitee {
     public List<Author> getAuthors() {
         return au;
     }
+
+    public void accept(Visitor visitor)
+    {
+        visitor.visitBook(this);
+        for(Element elem: super.getElementList())
+            elem.accept(visitor);
+    }
+
+
 }

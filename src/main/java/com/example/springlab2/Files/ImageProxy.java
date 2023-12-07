@@ -1,7 +1,7 @@
 package com.example.springlab2.Files;
 import java.awt.*;
 
-public class ImageProxy implements Picture,Element{
+public class ImageProxy implements Element{
     public String url;
     public Dimension dim;
     Image realImage = null;
@@ -17,15 +17,6 @@ public class ImageProxy implements Picture,Element{
         return realImage;
     }
 
-    @Override
-    public String url() {
-        return null;
-    }
-
-    @Override
-    public Dimension dim() {
-        return null;
-    }
 
 
 
@@ -41,6 +32,11 @@ public class ImageProxy implements Picture,Element{
 
     @Override
     public void remove(Element a) {
+
+    }
+
+    @Override
+    public void accept(TableOfContentUpdate tableOfContentUpdate) {
 
     }
 

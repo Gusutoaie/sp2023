@@ -1,8 +1,8 @@
 package com.example.springlab2.controllers;
 
 import com.example.springlab2.Files.*;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import com.example.springlab2.service.Implementation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -12,52 +12,49 @@ import java.util.List;
 public class BooksController {
     private List<Book> books = new ArrayList<>();
 
-    @GetMapping("/statistics")
-    public ResponseEntity<?> printStatistics() {
-        Section cap1 = new Section("Capitolul 1");
-        Pharagraph p1 = new Pharagraph("Paragraph 1");
-        cap1.add(p1);
-        Pharagraph p2 = new Pharagraph("Paragraph 2");
-        cap1.add(p2);
-        Pharagraph p3 = new Pharagraph("Paragraph 3");
-        cap1.add(p3);
-        Pharagraph p4 = new Pharagraph("Paragraph 4");
-        cap1.add(p4);
-        cap1.add(new ImageProxy("ImageOne"));
-        cap1.add(new Image("ImageTwo"));
-        cap1.add(new Pharagraph("Some text"));
-        cap1.add(new Table("Table 1"));
-        BookStatistics stats = new BookStatistics();
-        cap1.accept(stats);
-        stats.printStatistics();
-        return new ResponseEntity<>("", HttpStatus.OK);
+    private final GetAllBooks getAllBooksCommand;
+    private final AddBook addBookCommand;
+    private final DeleteBook deleteBookCommand;
+
+    private final GetBookById getBookById;
+    private final UpdateBook updateBook;
+    @Autowired
+    public BooksController(GetAllBooks getAllBooksCommand, AddBook addBookCommand, DeleteBook deleteBookCommand, GetBookById getBookById, UpdateBook updateBook) {
+        this.getAllBooksCommand = getAllBooksCommand;
+        this.addBookCommand = addBookCommand;
+        this.deleteBookCommand = deleteBookCommand;
+        this.getBookById = getBookById;
+        this.updateBook = updateBook;
     }
+
 
     @GetMapping("/books")
     public List<Book> getAllBooks() {
-        return books;
+        return getAllBooksCommand.execute();
     }
 
     @GetMapping("books/{id}")
     public Book getBookById(@PathVariable Long id) {
-
-
-        return
+        getBookById.setId(id);
+        return getBookById.execute();
+    }
 
     @PostMapping("/books")
     public Book createBook(@RequestBody Book book) {
-        return bookRepository.save(book);
+        addBookCommand.setBook(book);
+        return addBookCommand.execute();
     }
 
     @PutMapping("/books/{id}")
     public Book updateBook(@PathVariable Long id, @RequestBody Book updatedBook) {
-        updatedBook.setId(id);
-        return books.save(updatedBook);
+        updateBook.setBook(id, updatedBook);
+        return updateBook.execute();
     }
 
     @DeleteMapping("/book/{id}")
     public void deleteBook(@PathVariable Long id) {
-        books.deleteById(id);
+        deleteBookCommand.setBookId(id);
+        deleteBookCommand.execute();
     }
 
 }

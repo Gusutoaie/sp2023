@@ -1,8 +1,9 @@
-package com.example.springlab2.Files;
+package com.example.springlab2.service.Implementation;
 
+import com.example.springlab2.Files.*;
 import com.example.springlab2.service.Visitor;
 
-public class RenderContentVisitor implements Visitor {
+public class VisitorImpl implements Visitor {
     @Override
     public void visitParagraph(Pharagraph p) {
 
@@ -10,6 +11,7 @@ public class RenderContentVisitor implements Visitor {
 
     @Override
     public void visitSection(Section s) {
+        System.out.println(s.getTitle());
 
     }
 
@@ -36,5 +38,15 @@ public class RenderContentVisitor implements Visitor {
         for (Element et : book.el) {
             ((Visitee)et).accept(this);
         }
+    }
+
+    @Override
+    public void visitTableOfContents(TableOfContents tableOfContents) {
+
+    }
+
+    @Override
+    public void visitImageProxy(ImageProxy imageProxy) {
+
     }
 }
