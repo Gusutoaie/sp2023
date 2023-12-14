@@ -1,16 +1,29 @@
 package com.example.springlab2.Files;
 
 import com.example.springlab2.service.Visitor;
+import jakarta.annotation.Nonnull;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 
 import java.util.List;
 @Data
+@Entity
 public class Book  implements Visitee {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Integer id;
+
     private String title;
 
+    @OneToMany(targetEntity = BaseElement.class)
     private List<Element> sections;
+
+    @ManyToMany
     private List<Author> authors;
 
     public Book(String title, List<Element> sections){
@@ -18,6 +31,11 @@ public class Book  implements Visitee {
 
         this.sections = sections;
     }
+
+    public Book() {
+
+    }
+
 
     public void addAuthor(Author a){
         authors.add(a);

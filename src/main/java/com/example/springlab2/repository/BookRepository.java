@@ -1,6 +1,10 @@
 package com.example.springlab2.repository;
 
-import org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration;
+import com.example.springlab2.Files.Book;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public class BookRepository  {
+@Repository
+public interface BookRepository extends JpaRepository<Book,Integer> {
+
 }

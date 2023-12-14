@@ -4,6 +4,8 @@ import java.util.concurrent.TimeUnit;
 
 
 import com.example.springlab2.service.Visitor;
+import jakarta.persistence.Entity;
+
 
 public class Image implements Element,Picture,Visitee {
     public String ImageName;
@@ -15,6 +17,11 @@ public class Image implements Element,Picture,Visitee {
             e.printStackTrace();
         }
     }
+
+    public Image() {
+
+    }
+
     public void print() {
         System.out.println("Image with name : " +this.ImageName);
     }

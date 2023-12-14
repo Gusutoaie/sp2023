@@ -4,7 +4,7 @@ import com.example.springlab2.service.Visitor;
 import lombok.Data;
 import lombok.Getter;
 @Data
-public class Pharagraph implements  Element,Visitee{
+public class Pharagraph extends BaseElement implements Visitee{
     @Getter
     public String text;
     private AlignStrategy alignStrategy;

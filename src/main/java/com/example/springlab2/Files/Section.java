@@ -1,20 +1,31 @@
 package com.example.springlab2.Files;
 
 import com.example.springlab2.service.Visitor;
+import jakarta.persistence.*;
 import lombok.Data;
 
+import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.List;
 @Data
-public class Section implements Element,Visitee {
-    public String title;
+@Entity
+public class Section extends BaseElement implements Visitee {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Integer id;
+    @Column
+    public String title;
+    @OneToMany(targetEntity = BaseElement.class)
     public List<Element> el = new ArrayList<>();
 
     public Section(String title) {
         this.title = title;
     }
 
+    public Section() {
+
+    }
 
 
     @Override

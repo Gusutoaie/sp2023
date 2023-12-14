@@ -1,12 +1,19 @@
 package com.example.springlab2.Files;
 import com.example.springlab2.service.Visitor;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Transient;
+import lombok.NoArgsConstructor;
 
 import java.awt.*;
 import java.util.Objects;
+@Entity
+@NoArgsConstructor
+public class ImageProxy extends BaseElement implements Visitee {
 
-public class ImageProxy implements Element, Visitee {
 
     private String imagename;
+
+    @Transient
     private Image realImage= null;
 
     public ImageProxy(String imagename) {

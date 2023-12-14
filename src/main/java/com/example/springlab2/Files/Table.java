@@ -1,8 +1,10 @@
 package com.example.springlab2.Files;
 
 import com.example.springlab2.service.Visitor;
+import jakarta.persistence.Entity;
 
-public class Table implements Element,Visitee {
+@Entity
+public class Table extends BaseElement implements Visitee {
     public String title;
 
     public Table(String title) {

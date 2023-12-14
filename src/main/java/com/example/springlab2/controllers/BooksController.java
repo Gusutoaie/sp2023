@@ -34,7 +34,7 @@ public class BooksController {
     }
 
     @GetMapping("books/{id}")
-    public Book getBookById(@PathVariable Long id) {
+    public Book getBookById(@PathVariable Integer id) {
         getBookById.setId(id);
         return getBookById.execute();
     }

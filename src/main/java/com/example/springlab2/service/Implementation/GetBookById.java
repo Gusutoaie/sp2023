@@ -11,13 +11,13 @@ public class GetBookById implements Command<Book> {
     public GetBookById(BookService bookService) {
         this.bookService = bookService;
     }
-    Long id;
+    Integer id;
     @Override
     public Book execute() {
         return bookService.getBookById(id);
     }
 
-    public void setId(Long id){
+    public void setId(Integer id){
         this.id=id;
     }
 }
