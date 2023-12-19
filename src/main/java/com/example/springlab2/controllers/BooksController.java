@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 public class BooksController {
@@ -40,19 +41,19 @@ public class BooksController {
     }
 
     @PostMapping("/books")
-    public Book createBook(@RequestBody Book book) {
+    public CompletableFuture<Book> createBook(@RequestBody Book book) {
         addBookCommand.setBook(book);
         return addBookCommand.execute();
     }
 
     @PutMapping("/books/{id}")
-    public Book updateBook(@PathVariable Long id, @RequestBody Book updatedBook) {
+    public Book updateBook(@PathVariable Integer id, @RequestBody Book updatedBook) {
         updateBook.setBook(id, updatedBook);
         return updateBook.execute();
     }
 
     @DeleteMapping("/book/{id}")
-    public void deleteBook(@PathVariable Long id) {
+    public void deleteBook(@PathVariable Integer id) {
         deleteBookCommand.setBookId(id);
         deleteBookCommand.execute();
     }

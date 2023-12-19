@@ -2,9 +2,15 @@ package com.example.springlab2.Files;
 
 import com.example.springlab2.service.Visitor;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-@Entity
+@Entity(name = "BookTable")
 public class Table extends BaseElement implements Visitee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Integer id;
     public String title;
 
     public Table(String title) {

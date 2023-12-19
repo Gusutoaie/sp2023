@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UpdateBook implements Command<Book> {
     private final BookService bookService;
-    Long id;
+    Integer id;
     Book book;
 
     public UpdateBook(BookService bookService) {
@@ -19,7 +19,7 @@ public class UpdateBook implements Command<Book> {
         bookService.updateBook(id,book);
         return this.book;
     }
-    public void setBook(Long id, Book newBook){
+    public void setBook(Integer id, Book newBook){
         this.id = id;
         this.book = newBook;
     }

@@ -1,12 +1,13 @@
 package com.example.springlab2.service.Implementation;
 
 import com.example.springlab2.service.Command;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DeleteBook implements Command<Void> {
     private final BookService bookService;
-    Long id;
+    Integer id;
 
     public DeleteBook(BookService bookService) {
         this.bookService = bookService;
@@ -18,7 +19,7 @@ public class DeleteBook implements Command<Void> {
         return null;
     }
 
-    public void setBookId(Long id){
+    public void setBookId(Integer id){
         this.id = id;
     }
 
