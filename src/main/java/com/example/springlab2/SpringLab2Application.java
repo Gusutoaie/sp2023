@@ -9,7 +9,10 @@ import com.example.springlab2.service.Implementation.VisitorImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 public class SpringLab2Application {
@@ -66,6 +69,16 @@ public class SpringLab2Application {
         BookSaveJson bookSaveVisitor = new BookSaveJson();
         b.accept(bookSaveVisitor);
         //bookSaveVisitor.exportJSON();
+    }
+
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**");
+            }
+        };
     }
 
 }

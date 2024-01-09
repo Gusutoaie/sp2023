@@ -1,11 +1,11 @@
 package com.example.springlab2.controllers;
 
 import com.example.springlab2.Files.*;
+import com.example.springlab2.command.AllBooksSubject;
 import com.example.springlab2.command.AsynchronousExecutor;
 import com.example.springlab2.command.CommandExecutor;
 import com.example.springlab2.command.Request;
 import com.example.springlab2.service.Implementation.*;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,6 @@ import java.util.concurrent.TimeUnit;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -33,14 +32,15 @@ public class BooksController {
     private final GetBookById getBookById;
     private final UpdateBook updateBook;
     private final BookService bookService;
-
+    private final AllBooksSubject allBooksSubject;
     @Autowired
-    public BooksController(GetAllBooks getAllBooksCommand, AddBook addBookCommand, DeleteBook deleteBookCommand, GetBookById getBookById, UpdateBook updateBook,BookService bookService) {
+    public BooksController(GetAllBooks getAllBooksCommand, AddBook addBookCommand, DeleteBook deleteBookCommand, GetBookById getBookById, UpdateBook updateBook, BookService bookService, AllBooksSubject allBooksSubject) {
         this.getAllBooksCommand = getAllBooksCommand;
         this.addBookCommand = addBookCommand;
         this.deleteBookCommand = deleteBookCommand;
         this.getBookById = getBookById;
         this.updateBook = updateBook;
+        this.allBooksSubject = allBooksSubject;
         this.requests = new ArrayList<>();
         this.bookService = bookService;
 
@@ -87,6 +87,9 @@ public class BooksController {
         addBookCommand.setBook(book);
         Request request = asyncCommandExecutor.executeCommand(addBookCommand, bookService);
         request.setId(requests.size());
+
+        // Assuming the request is asynchronous, notify observers when the book is added
+        allBooksSubject.add(book);
 
         requests.add(request);
         return new ResponseEntity<>(requests.size() - 1, HttpStatus.OK);
